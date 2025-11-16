@@ -1,19 +1,19 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context'; // Importa o corrigido
-import { Stack } from 'expo-router'; // Importa o Stack para o cabeçalho de navegação
-import { Ionicons } from '@expo/vector-icons'; // Para os ícones de lápis e adição
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { Stack } from 'expo-router'; // Não precisamos mais do useRouter
+import { Ionicons } from '@expo/vector-icons';
 
 export default function EnderecosSalvosScreen() {
+  
   return (
     <SafeAreaView style={styles.safeContainer}>
-      
-      {/* 1. ESCONDE O CABEÇALHO NATIVO */}
+      {/* 1. Esconde o cabeçalho nativo */}
       <Stack.Screen options={{ headerShown: false }} />
 
       <View style={styles.container}>
         
-        {/* 2. ADICIONA O NOSSO TÍTULO GRANDE E CENTRALIZADO */}
+        {/* 2. Título (SEM O BOTÃO DE VOLTAR) */}
         <Text style={styles.header}>Endereços Salvos</Text>
 
         {/* Bloco principal de endereços */}
@@ -53,7 +53,7 @@ export default function EnderecosSalvosScreen() {
   );
 }
 
-// ESTILOS ATUALIZADOS
+// 3. ESTILOS (SEM OS ESTILOS 'headerContainer' e 'backButton')
 const styles = StyleSheet.create({
   safeContainer: {
     flex: 1,
@@ -62,20 +62,19 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 20,
-    paddingTop: 20, // <-- MUDANÇA AQUI (era 0)
+    paddingTop: 20,
   },
-  // ADICIONAMOS O ESTILO DO CABEÇALHO
   header: {
     fontSize: 34,
     fontWeight: 'bold',
     color: '#000',
-    marginBottom: 20,
-    textAlign: 'center', // Centralizado!
+    textAlign: 'center',
+    marginBottom: 20, // Trazemos o marginBottom de volta para cá
   },
   addressBlock: {
     backgroundColor: '#fff',
     borderRadius: 10,
-    marginTop: 20, // Este espaçamento agora é entre o título e o card
+    marginTop: 20,
     paddingVertical: 10,
     paddingHorizontal: 15,
     shadowColor: '#000',

@@ -6,47 +6,45 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context'; // Importa o corrigido
-import { Stack } from 'expo-router'; // Importa o Stack para ESCONDER o cabeçalho
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { Stack, useRouter } from 'expo-router';
+import { Ionicons } from '@expo/vector-icons';
 
-// Este é o componente da tela
 export default function TelaConfiguracoes() {
-  // 1. STATE
   const [notificationsEnabled, setNotificationsEnabled] = useState(false);
+  const router = useRouter();
 
   const toggleNotificationSwitch = () => {
     setNotificationsEnabled((previousState) => !previousState);
   };
 
-  // 2. JSX (A parte visual da tela)
   return (
     <SafeAreaView style={styles.safeContainer}>
-      
-      {/* 1. ESCONDE O CABEÇALHO NATIVO */}
       <Stack.Screen options={{ headerShown: false }} />
 
       <View style={styles.container}>
         
-        {/* 2. NOSSO TÍTULO GRANDE E CENTRALIZADO */}
-        <Text style={styles.header}>Configurações</Text>
+        {/* Cabeçalho com Seta Verde */}
+        <View style={styles.headerContainer}>
+          <TouchableOpacity onPress={() => router.back()} style={styles.backButton}>
+            <Ionicons name="arrow-back" size={28} color="#34C759" />
+          </TouchableOpacity>
+          <Text style={styles.header}>Configurações</Text>
+        </View>
 
         {/* Seção "Geral" */}
         <Text style={styles.sectionTitle}>Geral</Text>
         <View style={styles.section}>
-          {/* Linha 1: Notificações */}
           <View style={styles.row}>
             <Text style={styles.rowLabel}>Receber Notificações</Text>
             <Switch
-              trackColor={{ false: '#BDBDBD', true: '#34C759' }} // Cinza e Verde
-              thumbColor={'#ffffff'} // Bolinha sempre branca
+              trackColor={{ false: '#BDBDBD', true: '#34C759' }}
+              thumbColor={'#ffffff'}
               onValueChange={toggleNotificationSwitch}
               value={notificationsEnabled}
             />
           </View>
-
           <View style={styles.separator} />
-
-          {/* Linha 2: Aparência */}
           <TouchableOpacity style={styles.row}>
             <Text style={styles.rowLabel}>Aparência</Text>
             <Text style={styles.rowArrow}>&gt;</Text>
@@ -66,7 +64,7 @@ export default function TelaConfiguracoes() {
   );
 }
 
-// 3. STYLES (A parte de design)
+// ESTILOS ATUALIZADOS
 const styles = StyleSheet.create({
   safeContainer: {
     flex: 1,
@@ -75,22 +73,34 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 20,
-    paddingTop: 20, // Padding do topo
+    paddingTop: 20,
+  },
+  headerContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+    position: 'relative',
+    marginBottom: 20,
+  },
+  backButton: {
+    position: 'absolute',
+    left: 0,
+    padding: 5,
   },
   header: {
     fontSize: 34,
     fontWeight: 'bold',
     color: '#000',
-    marginBottom: 20,
-    textAlign: 'center', // <-- A MÁGICA ESTÁ AQUI
+    textAlign: 'center',
   },
   sectionTitle: {
     fontSize: 16,
     color: '#6e6e73',
     fontWeight: '600',
-    marginTop: 20,
-    marginBottom: 8,
-    textTransform: 'uppercase',
+    marginTop: 30,
+    marginBottom: 12,
+    // textTransform: 'uppercase', // <-- Linha removida
   },
   section: {
     backgroundColor: '#fff',
@@ -101,20 +111,20 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingVertical: 14,
+    paddingVertical: 18,
     paddingHorizontal: 16,
   },
   rowLabel: {
     fontSize: 17,
     color: '#000',
   },
-  rowValue: { // Estilo para "Bicicleta >"
+  rowValue: {
     fontSize: 17,
-    color: '#34C759', // Verde
+    color: '#34C759',
   },
-  rowArrow: { // Estilo para a seta de "Aparência"
+  rowArrow: {
     fontSize: 20,
-    color: '#34C759', // Cinza (ou mude para '#34C759' se quiser verde)
+    color: '#34C759',
   },
   separator: {
     height: 1,

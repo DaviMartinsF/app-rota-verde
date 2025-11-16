@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context'; // Importe o SafeAreaView corrigido
-import { Stack } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons'; // Para o ícone de localização
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { Stack, useRouter } from 'expo-router'; // 1. IMPORTAR
+import { Ionicons } from '@expo/vector-icons';
 
 // 1. NOSSOS DADOS MOCKADOS (DADOS FALSOS)
 const historyData = [
@@ -28,16 +28,13 @@ const historyData = [
   },
 ];
 
-// Este é o componente da tela
 export default function HistoricoRotasScreen() {
-  
-  // 2. FUNÇÃO QUE RENDERIZA CADA ITEM
+  const router = useRouter(); // 2. INICIAR
+
+  // Função que renderiza cada item
   const renderItem = ({ item }) => (
     <TouchableOpacity style={styles.itemContainer}>
-      {/* Ícone */}
       <Ionicons name="time-outline" size={24} color="#34C759" style={styles.icon} />
-
-      {/* Textos */}
       <View style={styles.textContainer}>
         <Text style={styles.itemTitle}>{item.title}</Text>
         <Text style={styles.itemAddress}>{item.address}</Text>
@@ -45,51 +42,64 @@ export default function HistoricoRotasScreen() {
     </TouchableOpacity>
   );
 
-  // 3. A TELA EM SI (ATUALIZADA)
   return (
     <SafeAreaView style={styles.safeContainer}>
-      
-      {/* 1. ESCONDE O CABEÇALHO NATIVO */}
       <Stack.Screen options={{ headerShown: false }} />
 
       <View style={styles.container}>
         
-        {/* 2. NOSSO TÍTULO GRANDE E CENTRALIZADO */}
-        <Text style={styles.header}>Histórico de Rotas</Text>
+        {/* 3. CABEÇALHO COM BOTÃO DE VOLTAR */}
+        <View style={styles.headerContainer}>
+          <TouchableOpacity onPress={() => router.back()} style={styles.backButton}>
+            <Ionicons name="arrow-back" size={28} color="#34C759" />
+          </TouchableOpacity>
+          <Text style={styles.header}>Histórico de Rotas</Text>
+        </View>
 
-        {/* 3. A LISTA */}
+        {/* 4. A LISTA */}
         <FlatList
           data={historyData}
           renderItem={renderItem}
           keyExtractor={(item) => item.id}
-          // O padding já está no 'container', então a lista não precisa de estilo
+          style={styles.list}
         />
       </View>
     </SafeAreaView>
   );
-  // NOTA: Eu removi a <FlatList> duplicada que estava aqui no seu código
 }
 
-// 5. ESTILOS (ATUALIZADOS)
+// 4. ESTILOS ATUALIZADOS
 const styles = StyleSheet.create({
   safeContainer: {
     flex: 1,
     backgroundColor: '#f2f2f7',
   },
-  // ADICIONAMOS O CONTAINER E O HEADER
   container: {
     flex: 1,
     paddingHorizontal: 20,
-    paddingTop: 20, // Padding do topo
+    paddingTop: 20,
+  },
+  // ADICIONADO: Container para o cabeçalho
+  headerContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+    position: 'relative',
+    marginBottom: 20,
+  },
+  // ADICIONADO: Botão de voltar
+  backButton: {
+    position: 'absolute',
+    left: 0,
+    padding: 5,
   },
   header: {
-    fontSize: 34,       // Mesmo tamanho do Configurações
-    fontWeight: 'bold', // Mesmo peso
+    fontSize: 34,
+    fontWeight: 'bold',
     color: '#000',
-    marginBottom: 20,
-    textAlign: 'center', // Centralizado!
+    textAlign: 'center',
   },
-  // O 'list' não precisa mais de padding
   list: {
     flex: 1,
   },
