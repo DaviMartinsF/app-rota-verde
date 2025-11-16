@@ -13,15 +13,17 @@ export default function EnderecosSalvosScreen() {
           headerShown: true, // Garante que o cabeçalho seja visível
           title: 'Endereços Salvos', // Título central
           headerTitleAlign: 'center', // Alinha o título no centro
-          headerLeft: () => ( // Botão de voltar (seta)
-            <TouchableOpacity style={{ marginLeft: 10 }}>
-              <Ionicons name="arrow-back" size={24} color="black" />
-            </TouchableOpacity>
-          ),
           headerStyle: {
             backgroundColor: '#f2f2f7', // Fundo do cabeçalho
           },
           headerShadowVisible: false, // Remove a sombra inferior do cabeçalho
+          // ... (logo abaixo de 'headerShadowVisible: false,')
+
+        headerTitleStyle: {
+          color: '#000', // Define a cor do título como preto
+          fontWeight: 'bold', // Deixa o título em negrito
+          fontSize: 17, // Um bom tamanho padrão
+        },
         }}
       />
 
