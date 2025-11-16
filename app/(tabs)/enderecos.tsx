@@ -1,42 +1,30 @@
 import React from 'react';
-import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context'; // Importa o corrigido
 import { Stack } from 'expo-router'; // Importa o Stack para o cabeçalho de navegação
 import { Ionicons } from '@expo/vector-icons'; // Para os ícones de lápis e adição
 
 export default function EnderecosSalvosScreen() {
   return (
-    // SafeAreaView para evitar o notch e a barra de status
     <SafeAreaView style={styles.safeContainer}>
-      {/* Configurações do cabeçalho de navegação (topo da tela) */}
-      <Stack.Screen
-        options={{
-          headerShown: true, // Garante que o cabeçalho seja visível
-          title: 'Endereços Salvos', // Título central
-          headerTitleAlign: 'center', // Alinha o título no centro
-          headerStyle: {
-            backgroundColor: '#f2f2f7', // Fundo do cabeçalho
-          },
-          headerShadowVisible: false, // Remove a sombra inferior do cabeçalho
-          // ... (logo abaixo de 'headerShadowVisible: false,')
-
-        headerTitleStyle: {
-          color: '#000', // Define a cor do título como preto
-          fontWeight: 'bold', // Deixa o título em negrito
-          fontSize: 17, // Um bom tamanho padrão
-        },
-        }}
-      />
+      
+      {/* 1. ESCONDE O CABEÇALHO NATIVO */}
+      <Stack.Screen options={{ headerShown: false }} />
 
       <View style={styles.container}>
+        
+        {/* 2. ADICIONA O NOSSO TÍTULO GRANDE E CENTRALIZADO */}
+        <Text style={styles.header}>Endereços Salvos</Text>
+
         {/* Bloco principal de endereços */}
         <View style={styles.addressBlock}>
           {/* Ícones de edição e adição */}
           <View style={styles.iconsContainer}>
             <TouchableOpacity style={styles.iconButton}>
-              <Ionicons name="pencil" size={20} color="#34C759" /> {/* Lápis verde */}
+              <Ionicons name="pencil" size={20} color="#34C759" />
             </TouchableOpacity>
             <TouchableOpacity style={styles.iconButton}>
-              <Ionicons name="add-circle" size={24} color="#34C759" /> {/* Círculo com + verde */}
+              <Ionicons name="add-circle" size={24} color="#34C759" />
             </TouchableOpacity>
           </View>
 
@@ -65,23 +53,32 @@ export default function EnderecosSalvosScreen() {
   );
 }
 
+// ESTILOS ATUALIZADOS
 const styles = StyleSheet.create({
   safeContainer: {
     flex: 1,
-    backgroundColor: '#f2f2f7', // Fundo cinza claro
+    backgroundColor: '#f2f2f7',
   },
   container: {
     flex: 1,
-    paddingHorizontal: 20, // Padding horizontal como no design
-    paddingTop: 0, // O cabeçalho já gerencia o topo
+    paddingHorizontal: 20,
+    paddingTop: 20, // <-- MUDANÇA AQUI (era 0)
+  },
+  // ADICIONAMOS O ESTILO DO CABEÇALHO
+  header: {
+    fontSize: 34,
+    fontWeight: 'bold',
+    color: '#000',
+    marginBottom: 20,
+    textAlign: 'center', // Centralizado!
   },
   addressBlock: {
-    backgroundColor: '#fff', // Fundo branco do bloco
+    backgroundColor: '#fff',
     borderRadius: 10,
-    marginTop: 20, // Espaçamento do topo
-    paddingVertical: 10, // Padding interno vertical
-    paddingHorizontal: 15, // Padding interno horizontal
-    shadowColor: '#000', // Sombra leve para dar profundidade
+    marginTop: 20, // Este espaçamento agora é entre o título e o card
+    paddingVertical: 10,
+    paddingHorizontal: 15,
+    shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 3,
@@ -89,14 +86,14 @@ const styles = StyleSheet.create({
   },
   iconsContainer: {
     flexDirection: 'row',
-    justifyContent: 'flex-end', // Alinhar ícones à direita
+    justifyContent: 'flex-end',
     paddingVertical: 10,
   },
   iconButton: {
-    marginLeft: 15, // Espaçamento entre os ícones
+    marginLeft: 15,
   },
   addressItem: {
-    paddingVertical: 10, // Espaçamento interno de cada item
+    paddingVertical: 10,
   },
   addressTitle: {
     fontSize: 17,
@@ -105,12 +102,12 @@ const styles = StyleSheet.create({
   },
   addressSubtitle: {
     fontSize: 15,
-    color: '#8e8e93', // Cor cinza do subtítulo
+    color: '#8e8e93',
     marginTop: 2,
   },
   separator: {
     height: 1,
-    backgroundColor: '#f2f2f7', // Linha separadora
-    marginVertical: 10, // Espaçamento da linha
+    backgroundColor: '#f2f2f7',
+    marginVertical: 10,
   },
 });

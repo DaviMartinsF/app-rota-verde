@@ -5,7 +5,6 @@ import { Stack } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons'; // Para o ícone de localização
 
 // 1. NOSSOS DADOS MOCKADOS (DADOS FALSOS)
-// Em um app real, isso viria de um banco de dados.
 const historyData = [
   {
     id: '1',
@@ -31,14 +30,13 @@ const historyData = [
 
 // Este é o componente da tela
 export default function HistoricoRotasScreen() {
-
+  
   // 2. FUNÇÃO QUE RENDERIZA CADA ITEM
-  // A FlatList vai chamar essa função para cada item do 'historyData'.
   const renderItem = ({ item }) => (
     <TouchableOpacity style={styles.itemContainer}>
       {/* Ícone */}
-      <Ionicons name="location-sharp" size={24} color="#34C759" style={styles.icon} />
-      
+      <Ionicons name="time-outline" size={24} color="#34C759" style={styles.icon} />
+
       {/* Textos */}
       <View style={styles.textContainer}>
         <Text style={styles.itemTitle}>{item.title}</Text>
@@ -47,59 +45,72 @@ export default function HistoricoRotasScreen() {
     </TouchableOpacity>
   );
 
-  // 3. A TELA EM SI
+  // 3. A TELA EM SI (ATUALIZADA)
   return (
     <SafeAreaView style={styles.safeContainer}>
-      {/* Configuração do Cabeçalho */}
-      <Stack.Screen
-        options={{
-          headerShown: true,
-          title: 'Histórico de Rotas',
-          headerTitleAlign: 'center',
-          headerStyle: { backgroundColor: '#f2f2f7' },
-          headerShadowVisible: false,
-        }}
-      />
       
-      {/* 4. A LISTA */}
-      <FlatList
-        data={historyData} // De onde vêm os dados
-        renderItem={renderItem} // Como renderizar cada item
-        keyExtractor={(item) => item.id} // Como identificar cada item (ID único)
-        style={styles.list}
-      />
+      {/* 1. ESCONDE O CABEÇALHO NATIVO */}
+      <Stack.Screen options={{ headerShown: false }} />
+
+      <View style={styles.container}>
+        
+        {/* 2. NOSSO TÍTULO GRANDE E CENTRALIZADO */}
+        <Text style={styles.header}>Histórico de Rotas</Text>
+
+        {/* 3. A LISTA */}
+        <FlatList
+          data={historyData}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id}
+          // O padding já está no 'container', então a lista não precisa de estilo
+        />
+      </View>
     </SafeAreaView>
   );
+  // NOTA: Eu removi a <FlatList> duplicada que estava aqui no seu código
 }
 
-// 5. ESTILOS
+// 5. ESTILOS (ATUALIZADOS)
 const styles = StyleSheet.create({
   safeContainer: {
     flex: 1,
     backgroundColor: '#f2f2f7',
   },
+  // ADICIONAMOS O CONTAINER E O HEADER
+  container: {
+    flex: 1,
+    paddingHorizontal: 20,
+    paddingTop: 20, // Padding do topo
+  },
+  header: {
+    fontSize: 34,       // Mesmo tamanho do Configurações
+    fontWeight: 'bold', // Mesmo peso
+    color: '#000',
+    marginBottom: 20,
+    textAlign: 'center', // Centralizado!
+  },
+  // O 'list' não precisa mais de padding
   list: {
-    paddingHorizontal: 20, // Espaçamento nas laterais da lista
-    paddingTop: 20, // Espaçamento no topo
+    flex: 1,
   },
   itemContainer: {
-    backgroundColor: '#fff', // Fundo branco do card
+    backgroundColor: '#fff',
     borderRadius: 10,
     padding: 15,
-    marginBottom: 15, // Espaçamento entre os cards
-    flexDirection: 'row', // Alinhar ícone e texto lado a lado
-    alignItems: 'center', // Centralizar verticalmente
-    shadowColor: '#000', // Sombra
+    marginBottom: 15,
+    flexDirection: 'row',
+    alignItems: 'center',
+    shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 3,
     elevation: 3,
   },
   icon: {
-    marginRight: 15, // Espaçamento entre o ícone e o texto
+    marginRight: 15,
   },
   textContainer: {
-    flex: 1, // Faz o texto ocupar o espaço restante
+    flex: 1,
   },
   itemTitle: {
     fontSize: 17,
