@@ -100,7 +100,6 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     marginTop: 30,
     marginBottom: 12,
-    // textTransform: 'uppercase', // <-- Linha removida
   },
   section: {
     backgroundColor: '#fff',

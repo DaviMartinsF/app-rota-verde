@@ -1,21 +1,28 @@
 import { FontAwesome5 } from '@expo/vector-icons';
 import { Tabs } from 'expo-router';
-
+import { useSafeAreaInsets } from 'react-native-safe-area-context'; 
 export default function Layout() {
+  const insets = useSafeAreaInsets(); 
+
   return (
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: '#00A859', // Verde ativo
         tabBarInactiveTintColor: '#4F4F4F', // Cinza inativo
         headerShown: false, // Esconde o cabeçalho padrão
+        
+        
         tabBarStyle: {
-          height: 60,
-          paddingBottom: 10,
+          backgroundColor: '#F6F6F6', // Usei a cor do seu design anterior
+          borderTopWidth: 0,
           paddingTop: 10,
+          // Altura mínima + o espaço da área segura
+          minHeight: 70 + insets.bottom, 
+          // Padding inferior dinâmico para não cortar
+          paddingBottom: insets.bottom > 0 ? insets.bottom : 10, 
         }
       }}
     >
-      {/* --- ITENS VISÍVEIS NO MENU (APENAS 3) --- */}
 
       {/* 1. MAPA (index) */}
       <Tabs.Screen
@@ -45,11 +52,8 @@ export default function Layout() {
       />
 
       {/* --- TELAS ESCONDIDAS (ACESSÍVEIS APENAS POR BOTÕES INTERNOS) --- */}
-      {/* Usamos href: null para esconder do menu de baixo */}
-
       <Tabs.Screen name="planejar" options={{ href: null }} />
       <Tabs.Screen name="rota" options={{ href: null }} />
-      
       <Tabs.Screen name="historico" options={{ href: null }} />
       <Tabs.Screen name="configuracoes" options={{ href: null }} />
       <Tabs.Screen name="modal" options={{ href: null }} />

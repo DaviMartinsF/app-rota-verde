@@ -1,22 +1,19 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Stack } from 'expo-router'; // Não precisamos mais do useRouter
+import { Stack } from 'expo-router'; 
 import { Ionicons } from '@expo/vector-icons';
 
 export default function EnderecosSalvosScreen() {
   
   return (
     <SafeAreaView style={styles.safeContainer}>
-      {/* 1. Esconde o cabeçalho nativo */}
       <Stack.Screen options={{ headerShown: false }} />
 
       <View style={styles.container}>
         
-        {/* 2. Título (SEM O BOTÃO DE VOLTAR) */}
         <Text style={styles.header}>Endereços Salvos</Text>
 
-        {/* Bloco principal de endereços */}
         <View style={styles.addressBlock}>
           {/* Ícones de edição e adição */}
           <View style={styles.iconsContainer}>
@@ -53,7 +50,7 @@ export default function EnderecosSalvosScreen() {
   );
 }
 
-// 3. ESTILOS (SEM OS ESTILOS 'headerContainer' e 'backButton')
+// 3. ESTILOS
 const styles = StyleSheet.create({
   safeContainer: {
     flex: 1,
@@ -69,7 +66,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#000',
     textAlign: 'center',
-    marginBottom: 20, // Trazemos o marginBottom de volta para cá
+    marginBottom: 20,
   },
   addressBlock: {
     backgroundColor: '#fff',

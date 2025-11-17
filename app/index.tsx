@@ -25,7 +25,7 @@ export default function HomeScreen() {
         </TouchableOpacity>
       </View>
 
-      {/* BOTÕES FLUTUANTES */}
+
       <View style={styles.floatingButtons}>
         <TouchableOpacity style={styles.circleButton}>
            <MaterialIcons name="my-location" size={24} color="#00A859" />
@@ -35,7 +35,7 @@ export default function HomeScreen() {
         </TouchableOpacity>
       </View>
 
-      {/* REMOVEMOS O MENU VERDE DAQUI */}
+
 
     </View>
   );

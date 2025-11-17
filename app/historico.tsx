@@ -1,10 +1,9 @@
 import React from 'react';
 import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Stack, useRouter } from 'expo-router'; // 1. IMPORTAR
+import { Stack, useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 
-// 1. NOSSOS DADOS MOCKADOS (DADOS FALSOS)
 const historyData = [
   {
     id: '1',
@@ -28,11 +27,19 @@ const historyData = [
   },
 ];
 
+// Define o tipo para cada item (para TypeScript)
+type HistoryItem = {
+  id: string;
+  title: string;
+  address: string;
+};
+
 export default function HistoricoRotasScreen() {
-  const router = useRouter(); // 2. INICIAR
+  const router = useRouter();
 
   // Função que renderiza cada item
-  const renderItem = ({ item }) => (
+  // Adicionamos o tipo { item: HistoryItem }
+  const renderItem = ({ item }: { item: HistoryItem }) => (
     <TouchableOpacity style={styles.itemContainer}>
       <Ionicons name="time-outline" size={24} color="#34C759" style={styles.icon} />
       <View style={styles.textContainer}>
@@ -68,7 +75,7 @@ export default function HistoricoRotasScreen() {
   );
 }
 
-// 4. ESTILOS ATUALIZADOS
+// 4. ESTILOS
 const styles = StyleSheet.create({
   safeContainer: {
     flex: 1,
@@ -79,7 +86,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingTop: 20,
   },
-  // ADICIONADO: Container para o cabeçalho
   headerContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
@@ -88,7 +94,6 @@ const styles = StyleSheet.create({
     position: 'relative',
     marginBottom: 20,
   },
-  // ADICIONADO: Botão de voltar
   backButton: {
     position: 'absolute',
     left: 0,
