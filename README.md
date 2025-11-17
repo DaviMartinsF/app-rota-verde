@@ -25,7 +25,7 @@ A versão atual do aplicativo inclui as seguintes funcionalidades, baseadas nos 
 
 O "Rota Verde" foi concebido para mitigar os desafios da mobilidade urbana, focando na sustentabilidade ambiental e no conforto do usuário.
 
-Baseado em uma análise de usuários[cite: 13], o projeto foi desenhado para atender a diferentes personas, como:
+Baseado em uma análise de usuários, o projeto foi desenhado para atender a diferentes personas, como:
 
   * **A Estudante Consciente (Sofia):** Que prioriza o impacto ambiental e o conforto, buscando rotas a pé com mais sombra e integração com transporte público.
   * **O Pendular Pragmático (Lucas):** Que busca conveniência e se beneficiaria de funcionalidades futuras como a localização de pontos de recarga para VEs.
@@ -34,8 +34,8 @@ Baseado em uma análise de usuários[cite: 13], o projeto foi desenhado para ate
 
 O projeto considera a acessibilidade um pilar central, pois um aplicativo de mobilidade deve atender a todos. As diretrizes incluem:
 
-  * **Contraste e Cores:** Garantia de contraste adequado (mínimo 4.5:1) e uso de texturas ou padrões, não apenas cores, para diferenciar rotas.
-  * **Áreas de Toque:** Botões e elementos interativos com áreas de toque grandes (mínimo 44x44 pixels).
+  * **Contraste e Cores:** Garantia de contraste adequado e uso de texturas ou padrões, não apenas cores, para diferenciar rotas.
+  * **Áreas de Toque:** Botões e elementos interativos com áreas de toque grandes.
   * **Linguagem Simples:** Uso de textos diretos e ícones universais para facilitar a compreensão cognitiva.
 
 ## Tecnologias Utilizadas
