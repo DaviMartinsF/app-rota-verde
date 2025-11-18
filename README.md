@@ -8,7 +8,10 @@ O projeto foi desenvolvido em **React Native** com **Expo Router**, focando em u
 
 O design e o protótipo de alta fidelidade do projeto foram criados no Figma e serviram como base para o desenvolvimento deste aplicativo.
 
-  * **[Acesse o protótipo no Figma aqui](https://www.figma.com/design/KV7CUCzDxMc6ox9Mho89XC/Sem-t%C3%ADtulo?node-id=1-3&t=lM2TUo9k2RgMKbje-1)** 
+  * **[Acesse o protótipo no Figma aqui](https://www.figma.com/design/KV7CUCzDxMc6ox9Mho89XC/Sem-t%C3%ADtulo?node-id=1-3&t=lM2TUo9k2RgMKbje-1)**
+
+# Vídeo no Youtube
+ * **[Acesse o vídeo no Youtube aqui](youtube.com/watch?si=gZ6qw_QB49HuKrho&v=GrQlA7WtNVE&feature=youtu.be)**
 
 ## Funcionalidades Implementadas
 
