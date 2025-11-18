@@ -18,7 +18,7 @@ export default function HomeScreen() {
         <TouchableOpacity 
           style={styles.searchBar} 
           activeOpacity={0.9}
-          onPress={() => router.push('/planejar')} // <--- AQUI ESTÁ O REDIRECIONAMENTO
+          onPress={() => router.push('/planejar')}
         >
           <Ionicons name="search" size={20} color="#00A859" />
           <Text style={styles.searchText}>Para onde vamos hoje?</Text>
