@@ -17,7 +17,7 @@ export default function RouteMap({ destinoNome, origem }: RouteMapProps) {
   const [carregando, setCarregando] = useState(true);
 
   // 🚨 COLE SUA CHAVE DO GOOGLE AQUI 🚨
-  const GOOGLE_MAPS_APIKEY = 'AIzaSyDgJ1ELLiPKObx5QWCVR7TS8oCvjqO_Jkc';
+  const GOOGLE_MAPS_APIKEY = process.env.EXPO_PUBLIC_GOOGLE_MAPS_API_KEY;
 
   return (
     <View style={styles.container}>
